@@ -2,7 +2,6 @@ import pyautogui
 import time
 
 def wait_for_image(image_path, confidence=0.7, delay=5):
-    """Attend que l'image soit trouvee sur l'ecran."""
     while True:
         try:
             location = pyautogui.locateOnScreen(image_path, confidence=confidence)
@@ -15,7 +14,6 @@ def wait_for_image(image_path, confidence=0.7, delay=5):
             time.sleep(delay)
 
 def click_image(image_location):
-    """Clique sur la position de l'image trouvee."""
     pyautogui.click(image_location)
     print(f"Image cliquee : {image_location}")
 
@@ -44,19 +42,15 @@ for i in range(times):
         try:
             print("Recherche de stamina...")
         
-            # Localisation de l'image une seule fois
             sta_meat_location = wait_for_image('./Assets/STA.PNG')
         
-            # Si l'image est trouvée, effectuer trois clics à des positions fixes
             if sta_meat_location is not None:
-                # Positions fixes pour les clics
                 sta_positions = [(1085, 640), (1060, 710), (1085, 640)]
             
                 for pos in sta_positions:
                     pyautogui.click(x=pos[0], y=pos[1])
                     print(f"Clique sur la position {pos}")
-                    time.sleep(1)  # Pause pour permettre à l'interface de se stabiliser
-
+                    time.sleep(1)  
         except Exception as e:
             print(f"Erreur lors de la recherche de stamina : {e}")
             pass
